@@ -60,3 +60,12 @@ Create a `.shellcolor` file in your project directory:
 
 ```sh
 echo "#1a1a2e" > ~/Projects/my-project/.shellcolor
+```
+
+Here are some nice mellow colors to start with:
+
+```
+#1a1a2e <-- Soft Blue background
+#1a2e1a <-- Soft Green background
+#2e1a1a < -- Soft Red background
+```
