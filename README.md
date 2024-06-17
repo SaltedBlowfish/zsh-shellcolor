@@ -1,4 +1,4 @@
-# zsh-shellcolors Zsh Plugin
+# zsh-shellcolors
 
 ShellColors is an Oh My Zsh plugin that changes the terminal background color based on the presence of a `.shellcolor` file in the current directory. This can help visually distinguish different projects or directories.
 
