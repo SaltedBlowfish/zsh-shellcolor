@@ -2,6 +2,8 @@
 
 ShellColors is an Oh My Zsh plugin that changes the terminal background color based on the presence of a `.shellcolor` file in the current directory. This can help visually distinguish different projects or directories.
 
+![2024-06-17 16 18 23](https://github.com/SaltedBlowfish/zsh-shellcolor/assets/6200478/33c1cf81-8e9c-423c-94e8-2d78fc0cb366)
+
 ## Installation
 
 1. Clone the repository into the custom plugins directory of Oh My Zsh:
@@ -60,3 +62,12 @@ Create a `.shellcolor` file in your project directory:
 
 ```sh
 echo "#1a1a2e" > ~/Projects/my-project/.shellcolor
+```
+
+Here are some nice mellow colors to start with:
+
+```
+#1a1a2e <-- Soft Blue background
+#1a2e1a <-- Soft Green background
+#2e1a1a < -- Soft Red background
+```
