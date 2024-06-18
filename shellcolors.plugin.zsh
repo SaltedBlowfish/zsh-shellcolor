@@ -1,18 +1,24 @@
-# Default background color, use environment variable if set
+# Default background color, use environment variable if set.
 DEFAULT_SHELLCOLOR="${DEFAULT_SHELLCOLOR:-#000000}"
 
-# Function to change the terminal background based on the .shellcolor file in the current directory.
-function change_background() {
+# Function to find the nearest .shellcolor file in the current or parent directories.
+function find_nearest_shellcolor() {
     local dir=$(pwd)
-    local color_file="$dir/.shellcolor"
-    local color
+    while [[ "$dir" != "/" ]]; do
+        local color_file="$dir/.shellcolor"
+        if [[ -f $color_file ]]; then
+            cat "$color_file"
+            return
+        fi
+        dir=$(dirname "$dir")
+    done
+    echo "$DEFAULT_SHELLCOLOR"
+}
 
-    if [[ -f $color_file ]]; then
-        color=$(<"$color_file")
-    else
-        color=$DEFAULT_SHELLCOLOR
-    fi
-
+# Function to change the terminal background based on the .shellcolor file in the current or parent
+# directories.
+function change_background() {
+    local color=$(find_nearest_shellcolor)
     printf '\033]11;%s\007' "$color"
 }
 
@@ -24,5 +30,5 @@ function chpwd() {
 
 add-zsh-hook chpwd change_background
 
-# Set the initial background
+# Set the initial background.
 change_background
