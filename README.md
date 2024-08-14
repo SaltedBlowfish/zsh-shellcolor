@@ -41,7 +41,7 @@ By default, the plugin uses black (`#000000`) as the default background color wh
 1. Open your `.zshrc` file:
 
     ```sh
-    nano ~/.zshrc
+    vim ~/.zshrc
     ```
 
 2. Add the following line to set your desired default background color:
