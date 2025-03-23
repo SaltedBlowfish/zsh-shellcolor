@@ -1,6 +1,8 @@
 # zsh-shellcolors
 
-ShellColors is an Oh My Zsh plugin that changes the terminal background color based on the presence of a `.shellcolor` file in the current directory. This can help visually distinguish different projects or directories.
+ShellColors is an Oh My Zsh plugin that automatically updates your terminal background color based
+on the presence of a `.shellcolor` file in the current directory or one of its parent directories.
+The plugin also provides a command interface to set, unset, and manage the `.shellcolor` file.
 
 ![2024-06-17 16 18 23](https://github.com/SaltedBlowfish/zsh-shellcolor/assets/6200478/33c1cf81-8e9c-423c-94e8-2d78fc0cb366)
 
@@ -26,17 +28,54 @@ ShellColors is an Oh My Zsh plugin that changes the terminal background color ba
 
 ## Usage
 
-1. Create a `.shellcolor` file in any directory where you want a custom background color. The file should contain a single line with the color code in the format `#RRGGBB`.
+The plugin automatically updates the terminal background when you change directories. It searches
+for a `.shellcolor` file in the current directory and its parent directories; if none is found, it
+uses the default color.
+
+A command interface is provided via the `shellcolor` command:
+
+- **Set a random color:**
 
     ```sh
-    echo "#1a1a2e" > /path/to/your/project/.shellcolor
+    shellcolor set random
     ```
 
-2. Navigate to the directory, and the terminal background color will change accordingly. When you navigate out of the directory, the background color will revert to the default color specified in the plugin.
+    This command generates a random low-saturation color, writes it to `.shellcolor`, and updates
+    the background.
+
+- **Set a specific color:**
+
+    ```sh
+    shellcolor set #RRGGBB
+    ```
+
+    Replace `#RRGGBB` with your desired hexadecimal color code.
+
+- **Unset the custom color:**
+
+    ```sh
+    shellcolor unset
+    ```
+
+    This command removes the `.shellcolor` file and reverts to the default background.
+
+- **Add `.shellcolor` to .gitignore:**
+
+    ```sh
+    shellcolor gitignore
+    ```
+
+- **Reshim (refresh) the background:**
+
+    ```sh
+    shellcolor reshim
+    ```
 
 ## Configuration
 
-By default, the plugin uses black (`#000000`) as the default background color when no `.shellcolor` file is found. You can change this default color by setting the `DEFAULT_SHELLCOLOR` environment variable in your `.zshrc` file.
+By default, the plugin uses black (`#000000`) as the default background color if no `.shellcolor`
+file is found. To change this, set the `DEFAULT_SHELLCOLOR` environment variable in your `.zshrc`
+file:
 
 1. Open your `.zshrc` file:
 
@@ -44,7 +83,7 @@ By default, the plugin uses black (`#000000`) as the default background color wh
     vim ~/.zshrc
     ```
 
-2. Add the following line to set your desired default background color:
+2. Add the following line with your desired default color:
 
     ```sh
     export DEFAULT_SHELLCOLOR="#yourdefaultcolor"
@@ -55,19 +94,3 @@ By default, the plugin uses black (`#000000`) as the default background color wh
     ```sh
     source ~/.zshrc
     ```
-
-## Example
-
-Create a `.shellcolor` file in your project directory:
-
-```sh
-echo "#1a1a2e" > ~/Projects/my-project/.shellcolor
-```
-
-Here are some nice mellow colors to start with:
-
-```
-#1a1a2e <-- Soft Blue background
-#1a2e1a <-- Soft Green background
-#2e1a1a < -- Soft Red background
-```
